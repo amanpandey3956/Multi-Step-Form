@@ -1,96 +1,80 @@
-import useJobAppStore from "@/store";
-import { Button } from "@/components/ui/button"
+import useMultiStepFormStore from "@/store";
+import { Button } from "@/components/ui/button";
 
 function ReviewSubmit() {
-  const { submitForm, prevStep, formData } = useJobAppStore();
+  const { submitForm, prevStep, formData } = useMultiStepFormStore();
 
   return (
-    <div>
-      <h2 className="text-xl font-semibold">Review your Information</h2>
+    <div className="p-5">
+      <h2 className="text-xl font-semibold mb-4">Review Your Information</h2>
 
-      <div>
-        <h3 className="text-lg font-semibold">Personal Info</h3>
-        <div className="grid gap-6 mb-6 mt-2 md:grid-cols-2 border p-2 border-gray-300 rounded-lg">
+      {/* Personal Information Section */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold mb-2">Personal Info</h3>
+        <div className="grid gap-6 md:grid-cols-2 border p-4 border-gray-300 rounded-lg">
           <p>
-            <span className="font-semibold">First Name:</span>
-            {formData.personalInfo.firstName}
+            <span className="font-semibold">Full Name: </span>
+            {formData.personalInfo.firstName} {formData.personalInfo.lastName}
           </p>
           <p>
-            <span className="font-semibold">Last Name:</span>
-            {formData.personalInfo.lastName}
+            <span className="font-semibold">Phone: </span>
+            {formData.personalInfo.phone || "N/A"}
           </p>
           <p>
-            <span className="font-semibold">Phone Number:</span>
-            {formData.personalInfo.phone}
-          </p>
-          <p>
-            <span className="font-semibold">Email:</span>
-            {formData.personalInfo.email}
+            <span className="font-semibold">Email: </span>
+            {formData.personalInfo.email || "N/A"}
           </p>
         </div>
       </div>
 
-      <div>
-        <h3 className="text-lg font-semibold">Experience Information</h3>
-        {formData.experienceInfo.fresher ? (
-          <p>fresher</p>
-        ) : (
-          <div>
-            {formData.experienceInfo.experiences?.map((e, idx) => (
-              <div
-                className="grid gap-6 mb-6 mt-2 md:grid-cols-2 border p-2 border-gray-300 rounded-lg"
-                key={idx}
-              >
-                <p>
-                  <span className="font-semibold">Company Name:</span>
-                  {e.companyName}
-                </p>
-                <p>
-                  <span className="font-semibold">Number of Years Worked:</span>
-                  {e.numberOfYears}
-                </p>
-                <p>
-                  <span className="font-semibold">Description:</span>
-                  {e.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
+      {/* Address Details Section */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold mb-2">Address Details</h3>
+        <div className="grid gap-6 md:grid-cols-2 border p-4 border-gray-300 rounded-lg">
+          <p>
+            <span className="font-semibold">Street: </span>
+            {formData.addressDetails.street || "N/A"}
+          </p>
+          <p>
+            <span className="font-semibold">City: </span>
+            {formData.addressDetails.city || "N/A"}
+          </p>
+          <p>
+            <span className="font-semibold">State: </span>
+            {formData.addressDetails.state || "N/A"}
+          </p>
+          <p>
+            <span className="font-semibold">Zip Code: </span>
+            {formData.addressDetails.zipCode || "N/A"}
+          </p>
+        </div>
       </div>
 
-      <div>
-        <h3 className="text-lg font-semibold">Education Background</h3>
-        {formData.educationBackground.educations?.map((e, idx) => (
-          <div
-            className="grid gap-6 mb-6 mt-2 md:grid-cols-2 border p-2 border-gray-300 rounded-lg"
-            key={idx}
-          >
-            <p>
-              <span className="font-semibold">Course Name:</span>
-              {e.courseName}
-            </p>
-            <p>
-              <span className="font-semibold">School Name:</span>
-              {e.schoolName}
-            </p>
-            <p>
-              <span className="font-semibold">Year of Completion:</span>
-              {e.yearOfCompletion}
-            </p>
-          </div>
-        ))}
+      {/* Preferences Section */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold mb-2">Preferences</h3>
+        <div className="grid gap-6 md:grid-cols-2 border p-4 border-gray-300 rounded-lg">
+          <p>
+            <span className="font-semibold">Preferred Job Type: </span>
+            {formData.preferences.newsletter || "N/A"}
+          </p>
+          <p>
+            <span className="font-semibold">Preferred Location: </span>
+            {formData.preferences.notifications || "N/A"}
+          </p>
+        </div>
       </div>
 
+      {/* Navigation Buttons */}
       <div className="flex justify-between mt-5">
         <Button
-          className="text-white bg-blue-500 px-3 py-1 rounded-lg text-lg sm:text-xl"
+          className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-lg"
           onClick={prevStep}
         >
           {"\u2190"} Previous
         </Button>
         <Button
-          className="text-white bg-blue-500 px-3 py-1 rounded-lg text-lg sm:text-xl"
+          className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-lg"
           onClick={submitForm}
         >
           Submit

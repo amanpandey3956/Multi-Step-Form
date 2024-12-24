@@ -1,24 +1,24 @@
 import { create } from "zustand";
 import {
   PersonalInfo,
-  ExperienceInfo,
-  EducationBackground,
+  AddressDetails,
+  Preferences,
   FormData,
 } from "./validationSchema";
 
-interface JobAppState {
+interface MultiStepFormState {
   step: number;
   formData: FormData;
   nextStep: () => void;
   prevStep: () => void;
   getTotalSteps: () => number;
   setPersonalInfo: (data: Partial<PersonalInfo>) => void;
-  setEducationBackground: (data: Partial<EducationBackground>) => void;
-  setExperienceInfo: (data: Partial<ExperienceInfo>) => void;
+  setAddressDetails: (data: Partial<AddressDetails>) => void;
+  setPreferences: (data: Partial<Preferences>) => void;
   submitForm: () => void;
 }
 
-const useJobAppStore = create<JobAppState>((set, get) => ({
+const useMultiStepFormStore = create<MultiStepFormState>((set,get) => ({
   step: 1,
   formData: {
     personalInfo: {
@@ -27,18 +27,15 @@ const useJobAppStore = create<JobAppState>((set, get) => ({
       phone: "",
       email: "",
     },
-    experienceInfo: {
-      fresher: false,
-      experiences: [],
+    addressDetails: {
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
     },
-    educationBackground: {
-      educations: [
-        {
-          courseName: "",
-          schoolName: "",
-          yearOfCompletion: "",
-        },
-      ],
+    preferences: {
+      newsletter: false,
+      notifications: false,
     },
   },
   nextStep: () => set((state) => ({ step: state.step + 1 })),
@@ -56,30 +53,30 @@ const useJobAppStore = create<JobAppState>((set, get) => ({
         },
       },
     })),
-  setExperienceInfo: (data) =>
+  setAddressDetails: (data) =>
     set((state) => ({
       formData: {
         ...state.formData,
-        experienceInfo: {
-          ...state.formData.experienceInfo,
+        addressDetails: {
+          ...state.formData.addressDetails,
           ...data,
         },
       },
     })),
-  setEducationBackground: (data) =>
+  setPreferences: (data) =>
     set((state) => ({
       formData: {
         ...state.formData,
-        educationBackground: {
-          ...state.formData.educationBackground,
+        preferences: {
+          ...state.formData.preferences,
           ...data,
         },
       },
     })),
   submitForm: () => {
     set((state) => {
-      console.log("Form submitted Successfully!");
-      console.log("Submitted Data: ", state.formData);
+      console.log("Form submitted successfully!");
+      console.log("Submitted Data:", state.formData);
       return {
         step: 1,
         formData: {
@@ -89,18 +86,15 @@ const useJobAppStore = create<JobAppState>((set, get) => ({
             phone: "",
             email: "",
           },
-          experienceInfo: {
-            fresher: false,
-            experiences: [],
+          addressDetails: {
+            street: "",
+            city: "",
+            state: "",
+            zipCode: "",
           },
-          educationBackground: {
-            educations: [
-              {
-                courseName: "",
-                schoolName: "",
-                yearOfCompletion: "",
-              },
-            ],
+          preferences: {
+            newsletter: false,
+            notifications: false,
           },
         },
       };
@@ -108,4 +102,4 @@ const useJobAppStore = create<JobAppState>((set, get) => ({
   },
 }));
 
-export default useJobAppStore;
+export default useMultiStepFormStore;

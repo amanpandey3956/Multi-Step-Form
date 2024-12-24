@@ -1,4 +1,4 @@
-import useJobAppStore from "@/store";
+import useMultiStepFormStore from "@/store";
 
 const Circle = ({
   step,
@@ -28,7 +28,7 @@ const Circle = ({
 };
 
 function ProgressBar() {
-  const { step, getTotalSteps } = useJobAppStore();
+  const { step, getTotalSteps } = useMultiStepFormStore();
   const totalSteps: number = getTotalSteps();
   return (
     <div className="flex mx-auto justify-between mb-6 w-3/4 max-w-2xl">
