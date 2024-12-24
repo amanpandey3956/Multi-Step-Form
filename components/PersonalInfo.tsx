@@ -1,10 +1,10 @@
-import useJobAppStore from "@/store";
+import useMultiStepFormStore from "@/store";
 import { Button } from "@/components/ui/button"
 import { personalInfoSchema } from "@/validationSchema";
 import { useState } from "react";
 
 function PersonalInfo() {
-  const { nextStep, formData, setPersonalInfo } = useJobAppStore();
+  const { nextStep, formData, setPersonalInfo } = useMultiStepFormStore();
   const [error, setError] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
