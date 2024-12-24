@@ -26,8 +26,6 @@ A multi-step form built using Nextjs, Zustand for state management, and Zod for 
 
 ## Deployment
 
-## Deployment
-
 * This application is deployed on Vercel. You can access the live version here: [Live-Form](https://multi-step-form-flame-phi.vercel.app)
 
 
