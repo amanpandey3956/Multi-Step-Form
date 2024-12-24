@@ -55,12 +55,12 @@ function ReviewSubmit() {
         <h3 className="text-lg font-semibold mb-2">Preferences</h3>
         <div className="grid gap-6 md:grid-cols-2 border p-4 border-gray-300 rounded-lg">
           <p>
-            <span className="font-semibold">Preferred Job Type: </span>
-            {formData.preferences.newsletter || "N/A"}
+            <span className="font-semibold">Subscribe to Newsletter: </span>
+            {formData.preferences.newsletter ? "Yes" : "N/A"}
           </p>
           <p>
-            <span className="font-semibold">Preferred Location: </span>
-            {formData.preferences.notifications || "N/A"}
+            <span className="font-semibold">Receive Notifications: </span>
+            {formData.preferences.notifications ? "Yes" : "N/A"}
           </p>
         </div>
       </div>
