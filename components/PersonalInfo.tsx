@@ -1,4 +1,5 @@
 import useJobAppStore from "@/store";
+import { Button } from "@/components/ui/button"
 import { personalInfoSchema } from "@/validationSchema";
 import { useState } from "react";
 
@@ -18,7 +19,7 @@ function PersonalInfo() {
       nextStep();
     } catch (error: any) {
       setError(
-        error.errors[0]?.message || "Please fill all teh fields correctly."
+        error.errors[0]?.message || "Please fill all the fields correctly."
       );
     }
   };
@@ -105,12 +106,12 @@ function PersonalInfo() {
       </div>
       {/* buttons */}
       <div className="flex justify-end mt-5">
-        <button
+        <Button
           className="text-white bg-blue-500 px-3 py-1 rounded-lg text-lg sm:text-xl"
           onClick={validateAndNext}
         >
           Next {"\u2192"}
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import useJobAppStore from "@/store";
+import { Button } from "@/components/ui/button"
 
 function ReviewSubmit() {
   const { submitForm, prevStep, formData } = useJobAppStore();
@@ -82,18 +83,18 @@ function ReviewSubmit() {
       </div>
 
       <div className="flex justify-between mt-5">
-        <button
-          className="text--blue-500 text-lg sm:text-xl"
+        <Button
+          className="text-white bg-blue-500 px-3 py-1 rounded-lg text-lg sm:text-xl"
           onClick={prevStep}
         >
           {"\u2190"} Previous
-        </button>
-        <button
+        </Button>
+        <Button
           className="text-white bg-blue-500 px-3 py-1 rounded-lg text-lg sm:text-xl"
           onClick={submitForm}
         >
           Submit
-        </button>
+        </Button>
       </div>
     </div>
   );
