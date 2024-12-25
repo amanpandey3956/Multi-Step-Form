@@ -1,4 +1,4 @@
-# Job Application Form with Nextjs 14, Zustand, and Zod Validation
+# Multi Step Form with Nextjs, Shadcn UI, Tailwind CSS, Zustand, and Zod Validation
 
 A multi-step form built using Nextjs, Zustand for state management, and Zod for schema validation. This form captures personal information, Address, and Preferences from user, with validation to ensure correctness of the data entered.
 
