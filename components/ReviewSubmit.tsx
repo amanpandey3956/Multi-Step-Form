@@ -1,8 +1,10 @@
 import useMultiStepFormStore from "@/store";
+import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button";
 
 function ReviewSubmit() {
   const { submitForm, prevStep, formData } = useMultiStepFormStore();
+  const { toast } = useToast();
 
   return (
     <div className="p-5">
@@ -75,7 +77,12 @@ function ReviewSubmit() {
         </Button>
         <Button
           className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-lg"
-          onClick={submitForm}
+          onClick={() => {
+            submitForm(); 
+            toast({
+              title: "Your Form Submitted Successfully"
+            })
+          }}
         >
           Submit
         </Button>
