@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import AddressDetails from "@/components/AddressDetails";
 import PersonalInfo from "@/components/PersonalInfo";
 import Preferences from "@/components/Preferences";
@@ -8,6 +9,20 @@ import useMultiStepFormStore from "@/store";
 
 export default function Home() {
   const { step } = useMultiStepFormStore();
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    document.documentElement.classList.toggle("dark", savedTheme === "dark");
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
 
   const renderStep = () => {
     switch (step) {
@@ -25,8 +40,17 @@ export default function Home() {
   };
 
   return (
-    <div className="flex justify-center py-10">
-      <div className="bg-gray-100 rounded-lg w-full p-10 mx-5">
+    <div className="flex flex-col items-center py-10">
+      {/* Theme Toggle Button */}
+      <button
+        aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+        onClick={toggleTheme}
+        className="mb-5 px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-blue-600 transition-all"
+      >
+        {theme === "light" ? "Dark" : "Light"} Mode
+      </button>
+
+      <div className="bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg w-full p-10 mx-5">
         <div className="pt-2 mb-5 text-center text-2xl sm:text-3xl font-semibold">
           ZenStreet.ai Form
         </div>
